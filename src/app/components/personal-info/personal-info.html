@@ -1,0 +1,6 @@
+<form #pForm="ngForm" (input)="onUpdate(pForm.value)">
+  <input type="text" name="fullName" ngModel required placeholder="שם מלא">
+  <input type="email" name="email" ngModel required email placeholder="אימייל">
+  <input type="tel" name="phone" ngModel required placeholder="טלפון">
+  <textarea name="bio" ngModel placeholder="תיאור קצר"></textarea>
+</form>

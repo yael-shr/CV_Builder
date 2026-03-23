@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+input, textarea, select {
+  width: 100%;
+  padding: 10px;
+  margin: 8px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box; /* מבטיח שהפדינג לא יחרוג מהרוחב */
+}
+
+button {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background-color: #2980b9;
+}
+
+.edu-item {
+  border-right: 3px solid #3498db;
+  padding-right: 15px;
+  margin-bottom: 20px;
+  background: #f9f9f9;
+  padding: 10px;
+}

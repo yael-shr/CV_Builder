@@ -1,0 +1,20 @@
+<form [formGroup]="eduForm">
+  <div formArrayName="items">
+    @for (item of items.controls; track $index) {
+      <div [formGroupName]="$index" class="edu-item">
+        <input formControlName="school" placeholder="מוסד לימודים">
+        <select formControlName="status">
+          <option value="סיימתי">סיימתי</option>
+          <option value="לומדת כרגע">לומדת כרגע</option>
+        </select>
+        
+        @if (item.get('status')?.value !== 'לומדת כרגע') {
+          <input type="date" formControlName="endDate" placeholder="תאריך סיום">
+        }
+
+        <button type="button" (click)="removeEducation($index)">מחק השכלה</button>
+      </div>
+    }
+  </div>
+  <button type="button" (click)="addEducation()">הוסף מוסד לימודים</button>
+</form>
