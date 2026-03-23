@@ -1,8 +1,28 @@
-# CvBuilder
+# CV Builder - Real-Time Resume Generator
+
+A modern, responsive web application for building professional resumes in real-time. This project demonstrates advanced state management and dynamic form handling using the latest Angular features.
+
+## 🚀 Key Features
+
+* **Instant Live Preview**: See your CV update instantly as you type, powered by **Angular Signals** for high-performance reactivity.
+* **Dynamic Forms**: Easily add or remove multiple education entries using **Angular Reactive Forms** and `FormArray`.
+* **Clean UI/UX**: A split-screen layout separating the data entry from the polished document preview.
+* **Modern Tech Stack**: Built with Angular 21, utilizing standalone components and modern control flow.
+
+## 🛠️ Technology Stack
+
+* **Framework**: Angular 21 (Latest)
+* **State Management**: Angular Signals
+* **Forms**: Reactive Forms & Template-driven Forms
+* **Styling**: Custom CSS with Flexbox layout
+
+---
+
+## 💻 Getting Started
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.1.
 
-## Development server
+### Development server
 
 To start a local development server, run:
 
@@ -12,48 +32,32 @@ ng serve
 
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
+## 📁 Project Structure
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+The project is organized into modular components and a centralized service for state management:
 
-```bash
-ng generate component component-name
-```
+* **`src/app/services/cv.ts`**: The core logic using **Angular Signals** to provide a reactive, single source of truth for the CV data.
+* **`src/app/components/personal-info`**: Handles personal details using Template-driven forms.
+* **`src/app/components/education`**: A dynamic section managing multiple education entries via `FormArray`.
+* **`src/app/components/cv-preview`**: A real-time rendering component that reflects changes instantly.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🧪 Testing
 
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+The project includes unit tests for both components and services using **Vitest**:
 
 ```bash
 ng test
 ```
 
-## Running end-to-end tests
+## 🛠️ Build & Deployment
 
-For end-to-end (e2e) testing, run:
+To create a production-ready build:
 
 ```bash
-ng e2e
+ng build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+The build artifacts will be stored in the ``` dist/  ```  directory, optimized for performance.
 
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## 📄 License
+This project is open-source and available under the MIT License.
