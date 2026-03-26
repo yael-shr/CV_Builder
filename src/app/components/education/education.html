@@ -1,20 +1,96 @@
 <form [formGroup]="eduForm">
   <div formArrayName="items">
-    @for (item of items.controls; track $index) {
-      <div [formGroupName]="$index" class="edu-item">
-        <input formControlName="school" placeholder="מוסד לימודים">
-        <select formControlName="status">
-          <option value="סיימתי">סיימתי</option>
-          <option value="לומדת כרגע">לומדת כרגע</option>
-        </select>
+    @for (item of items.controls; track $index; let i = $index) {
+      <div [formGroupName]="i" class="edu-item" style="border: 1px solid #ccc; padding: 20px; margin-bottom: 20px; border-radius: 8px;">
         
-        @if (item.get('status')?.value !== 'לומדת כרגע') {
-          <input type="date" formControlName="endDate" placeholder="תאריך סיום">
-        }
+        <div class="form-group">
+          <input formControlName="school" placeholder="מוסד לימודים">
+          @if (item.get('school')?.invalid && item.get('school')?.touched) {
+            <span class="error-msg">שדה זה חובה</span>
+          }
+        </div>
+        
+        <div class="form-group" style="display: flex; gap: 10px;">
+          <div style="flex: 1;">
+            <select formControlName="degreeType">
+              <option value="">סוג תואר/תעודה</option>
+              <option value="תעודה">תעודה</option>
+              <option value="תואר ראשון">תואר ראשון</option>
+              <option value="תואר שני">תואר שני</option>
+              <option value="דוקטורט">דוקטורט</option>
+            </select>
+            @if (item.get('degreeType')?.invalid && item.get('degreeType')?.touched) {
+              <span class="error-msg">נא לבחור סוג תואר</span>
+            }
+          </div>
 
-        <button type="button" (click)="removeEducation($index)">מחק השכלה</button>
+          <div style="flex: 1;">
+            <select formControlName="status">
+              <option value="סיימתי">סיימתי</option>
+              <option value="לומדת כרגע">לומדת כרגע</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <input formControlName="fieldOfStudy" placeholder="תחום לימודים">
+          @if (item.get('fieldOfStudy')?.invalid && item.get('fieldOfStudy')?.touched) {
+            <span class="error-msg">נא להזין תחום לימודים</span>
+          }
+        </div>
+
+        <div class="date-row">
+          <label>התחלה: <input type="date" formControlName="startDate"></label>
+          @if (item.get('status')?.value !== 'לומדת כרגע') {
+            <label>סיום: <input type="date" formControlName="endDate"></label>
+          }
+        </div>
+        @if (item.hasError('dateInvalid') && (item.get('startDate')?.touched || item.get('endDate')?.touched)) {
+          <span class="error-msg">תאריך הסיום חייב להיות מאוחר מתאריך ההתחלה</span>
+        }
+          <div class="form-group honors-wrapper" style="display: flex; align-items: center; gap: 8px; margin: 10px 0;">
+            <input type="checkbox" formControlName="hasHonors" id="honors-{{i}}" style="width: auto; cursor: pointer;">
+            <label for="honors-{{i}}" style="margin: 0; cursor: pointer;">הצטיינות</label>
+          </div>
+        <div class="form-group">
+          <input type="number" formControlName="gradeAverage" placeholder="ממוצע ציונים (0-100)">
+          @if (item.get('gradeAverage')?.invalid && item.get('gradeAverage')?.touched) {
+            <span class="error-msg">נא להזין ממוצע תקין (0-100)</span>
+          }
+        </div>
+
+        <div class="form-group">
+          <textarea formControlName="description" placeholder="תיאור קצר על הלימודים"></textarea>
+          @if (item.get('description')?.invalid && item.get('description')?.touched) {
+            <span class="error-msg">נא להזין תיאור</span>
+          }
+        </div>
+
+        <div formArrayName="courses" class="courses-section">
+          <h5>קורסים מרכזיים (לפחות אחד):</h5>
+          @for (course of getCourses(i).controls; track $index; let cI = $index) {
+            <div class="course-input-wrapper" style="display: flex; gap: 5px; margin-bottom: 5px; align-items: center;">
+              <div style="flex: 1;">
+                <input [formControlName]="cI" placeholder="שם הקורס" style="width: 100%;">
+                @if (course.invalid && course.touched) {
+                  <span class="error-msg">חובה להזין שם קורס</span>
+                }
+              </div>
+              <button type="button" (click)="removeCourse(i, cI)" [disabled]="getCourses(i).length <= 1" title="מחק קורס">❌</button>
+            </div>
+          }
+          <button type="button" (click)='addCourse(i)'>+ הוסף קורס</button>
+        </div>
+
+        <hr style="margin: 20px 0;">
+        <button type="button" (click)="removeEducation(i)" [disabled]="items.length <= 1" style="background-color: #ff4d4d; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer;">
+          מחק מוסד השכלה
+        </button>
       </div>
     }
   </div>
-  <button type="button" (click)="addEducation()">הוסף מוסד לימודים</button>
+  
+  <button type="button" (click)="addEducation()" style="margin-top: 10px; padding: 10px 20px; background-color: #2ecc71; color: white; border: none; border-radius: 4px; cursor: pointer;">
+    + הוסף מוסד לימודים נוסף
+  </button>
 </form>

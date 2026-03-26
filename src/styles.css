@@ -29,3 +29,47 @@ button:hover {
   background: #f9f9f9;
   padding: 10px;
 }
+/* שימוש במחלקות המובנות של אנגולר */
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+  border: 1px solid #dc3545; /* אדום שגיאה סטנדרטי */
+  border-right: 4px solid #dc3545; /* דגש נוסף בצד (מתאים ל-RTL) */
+}
+
+input.ng-valid.ng-touched, 
+textarea.ng-valid.ng-touched {
+  border: 1px solid #28a745; /* ירוק תקין */
+}
+
+.error-msg {
+  color: #dc3545;
+  font-size: 0.8rem;
+  margin-top: 2px;
+  display: block;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* עיצוב כללי לשגיאות ולידציה ב-Reactive Forms */
+.edu-item input.ng-invalid.ng-touched,
+.edu-item select.ng-invalid.ng-touched,
+.edu-item textarea.ng-invalid.ng-touched {
+  border: 1px solid #e74c3c;
+  box-shadow: 0 0 3px rgba(231, 76, 60, 0.2);
+}
+
+.error-text {
+  color: #e74c3c;
+  font-size: 0.75rem;
+  display: block;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+
+/* הדגשת שגיאת תאריכים ברמת כל הקבוצה */
+.edu-item.ng-invalid:not(.ng-pristine) {
+  background-color: #fffafa;
+}
