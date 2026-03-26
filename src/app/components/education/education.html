@@ -35,7 +35,7 @@
         <div class="form-group">
           <input formControlName="fieldOfStudy" placeholder="תחום לימודים">
           @if (item.get('fieldOfStudy')?.invalid && item.get('fieldOfStudy')?.touched) {
-            <span class="error-msg">נא להזין תחום לימודים</span>
+            <span class="error-msg">יש להזין תחום לימודים</span>
           }
         </div>
 
@@ -55,14 +55,14 @@
         <div class="form-group">
           <input type="number" formControlName="gradeAverage" placeholder="ממוצע ציונים (0-100)">
           @if (item.get('gradeAverage')?.invalid && item.get('gradeAverage')?.touched) {
-            <span class="error-msg">נא להזין ממוצע תקין (0-100)</span>
+            <span class="error-msg">יש להזין ממוצע תקין (0-100)</span>
           }
         </div>
 
         <div class="form-group">
           <textarea formControlName="description" placeholder="תיאור קצר על הלימודים"></textarea>
           @if (item.get('description')?.invalid && item.get('description')?.touched) {
-            <span class="error-msg">נא להזין תיאור</span>
+            <span class="error-msg">יש להזין תיאור</span>
           }
         </div>
 
