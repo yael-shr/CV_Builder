@@ -1,6 +1,29 @@
 <form #pForm="ngForm" (input)="onUpdate(pForm.value)">
-  <input type="text" name="fullName" ngModel required placeholder="שם מלא">
-  <input type="email" name="email" ngModel required email placeholder="אימייל">
-  <input type="tel" name="phone" ngModel required placeholder="טלפון">
-  <textarea name="bio" ngModel placeholder="תיאור קצר"></textarea>
+  <div class="form-group">
+    <input type="text" name="fullName" ngModel required #nameModel="ngModel" placeholder="שם מלא">
+    @if (nameModel.invalid && nameModel.touched) {
+      <span class="error-msg">שדה זה חובה</span>
+    }
+  </div>
+
+  <div class="form-group">
+    <input type="email" name="email" ngModel required email #emailModel="ngModel" placeholder="אימייל">
+    @if (emailModel.invalid && emailModel.touched) {
+      <span class="error-msg">נא להזין אימייל תקין</span>
+    }
+  </div>
+
+  <div class="form-group">
+    <input type="tel" name="phone" ngModel required pattern="[0-9]*" #phoneModel="ngModel" placeholder="טלפון">
+    @if (phoneModel.invalid && phoneModel.touched) {
+      <span class="error-msg">נא להזין מספרים בלבד</span>
+    }
+  </div>
+
+  <div class="form-group">
+    <textarea name="bio" ngModel required #bioModel="ngModel" placeholder="תיאור קצר"></textarea>
+    @if (bioModel.invalid && bioModel.touched) {
+      <span class="error-msg">נא להזין תיאור</span>
+    }
+  </div>
 </form>
