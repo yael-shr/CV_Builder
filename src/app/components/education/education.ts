@@ -39,7 +39,7 @@ export class EducationComponent implements OnInit {
       degreeType: ['', Validators.required],
       fieldOfStudy: ['', Validators.required],
       startDate: ['', Validators.required],
-      endDate: ['', Validators.required], // יתעדכן דינאמית
+      endDate: ['', Validators.required],
       status: ['סיימתי', Validators.required],
       gradeAverage: [null, [Validators.required, Validators.min(0), Validators.max(100)]], // טווח 0-100
       hasHonors: [false],
@@ -47,7 +47,6 @@ export class EducationComponent implements OnInit {
       courses: this.fb.array([], Validators.required)
     }, { validators: this.dateRangeValidator });
 
-    // האזנה לשינויי סטטוס לעדכון ולידציית תאריך סיום
     group.get('status')?.valueChanges.subscribe(status => {
       const endDateControl = group.get('endDate');
       if (status === 'לומדת כרגע') {
